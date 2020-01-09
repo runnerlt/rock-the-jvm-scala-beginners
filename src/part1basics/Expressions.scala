@@ -6,4 +6,9 @@ object Expressions extends App {
 
   println(2 + 3 * 4)
 
+  val someValue = {
+    2 < 3
+  }
+
 }
+
