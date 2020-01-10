@@ -20,9 +20,9 @@ object Functions extends App {
 
   println(fact(4))
 
-  def fibonacci(n: Int): Int = {
-    // TODO: pabaigti
-    1
+  def fib(n: Int): Int = {
+    if (n <= 2) 1
+    else + fib(n - 1) + fib(n - 2)
   }
-
+  println(fib(6))
 }
