@@ -14,7 +14,7 @@ object ScalaPlayground extends App {
   def isPrime(n: Int): Boolean = {
     @scala.annotation.tailrec
     def primeExtended(acc: Int): Int = {
-      if (acc == 0) -1 // handle zero, to avoid divide by zero. Zero is not a prime.
+      if (acc == 0 || acc == 1) -1 // handle zero, one. They are not primes.
       else if (n % acc == 0) n / acc
       else primeExtended(acc - 1)
     }
