@@ -11,19 +11,20 @@ object ScalaPlayground extends App {
   println(fibonacci(8))
 
 
-  def prime(n: Int): Int = {
-    def primeExtended(n: Int, acc: Int): Int = {
-//      println("n" + n + " acc " + acc)
-      if (n % acc == 0) n / acc
-      else primeExtended(n, acc - 1)
+  def isPrime(n: Int): Boolean = {
+    @scala.annotation.tailrec
+    def primeExtended(acc: Int): Int = {
+      if (acc == 0) -1 // handle zero, to avoid divide by zero. Zero is not a prime.
+      else if (n % acc == 0) n / acc
+      else primeExtended(acc - 1)
     }
 
-    if (primeExtended(n, n - 1) == n) 1
-    else 0
+    if (primeExtended(n / 2 ) == n) true
+    else false
 
   }
 
-  println("Is prime: " + prime(6))
+  println("Is prime: " + isPrime(0))
 
 
 }
