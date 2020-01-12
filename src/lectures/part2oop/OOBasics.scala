@@ -59,6 +59,7 @@ class Counters(cnt: Int) {
 
   def dec(): Counters = new Counters(cnt - 1)
 
+  // TODO: blogaim perdaryti su tail recursion
   def decAmt(amt: Int): Counters = new Counters(cnt - amt)
 
   def incAmt(amt: Int): Counters = new Counters(cnt + amt)
