@@ -14,12 +14,12 @@ object OOBasics extends App {
   println(copied.authorAge())
 
   // testing of counter
-  val c = new Counters(3)
+  val c = new Counter(3)
   println(c.getCnt())
   println(c.inc().getCnt())
   println(c.dec().getCnt())
-  println(c.decAmt(5).getCnt())
-  println(c.incAmt(5).getCnt())
+  println(c.dec(5).getCnt())
+  println(c.inc(5).getCnt())
 
   /*
   val c = new Car("Fiat", "Red", 50000)
@@ -52,18 +52,29 @@ class Novel(name: String, yearOfRelease: Int, author: Writer) {
   def copy(): Novel = new Novel(name, Year.now.getValue, author)
 }
 
-class Counters(cnt: Int) {
-  def getCnt(): Int = cnt
+class Counter(counter: Int) {
+  def getCnt(): Int = this.counter
 
-  def inc(): Counters = new Counters(cnt + 1)
+  def inc(): Counter = new Counter(counter + 1)
 
-  def dec(): Counters = new Counters(cnt - 1)
+  def dec(): Counter = new Counter(counter - 1)
 
-  // TODO: blogaim perdaryti su tail recursion
-  def decAmt(amt: Int): Counters = new Counters(cnt - amt)
 
-  def incAmt(amt: Int): Counters = new Counters(cnt + amt)
+  def inc(n: Int): Counter = {
+    println(s"We have b in icrement: ${n}")
 
+    if (n < 1) this
+    else inc.inc(n - 1)
+
+  }
+
+  def dec(n: Int): Counter = {
+    println(s"We have b in decrement: ${n}")
+
+    if (n < 1) this
+    else dec.dec(n - 1)
+
+  }
 
 }
 

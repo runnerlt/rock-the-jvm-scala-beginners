@@ -3,28 +3,36 @@ package playground
 object ScalaPlayground extends App {
   println("Hello, Scala!")
 
-  def fibonacci(n: Int): Int = {
-    if (n <= 2) 1
-    else fibonacci(n - 1) + fibonacci(n - 2)
+  val c = new Counter(5)
+  println(c.inc(8).getCnt)
+  println(c.dec(80).getCnt)
+
+}
+
+
+class Counter(val counter: Int) {
+  def getCnt: Int = this.counter
+
+  def inc: Counter = new Counter(counter + 1)
+
+  def dec: Counter = new Counter(counter - 1)
+
+
+  def inc(n: Int): Counter = {
+    println(s"We have b in icrement: $n")
+
+    if (n < 1) this
+    else inc.inc(n - 1)
+
   }
 
-  println(fibonacci(8))
+  def dec(n: Int): Counter = {
+    println(s"We have b in decrement: $n")
 
-
-  def isPrime(n: Int): Boolean = {
-    @scala.annotation.tailrec
-    def primeExtended(acc: Int): Int = {
-      if (acc == 0 || acc == 1) -1 // handle zero, one. They are not primes.
-      else if (n % acc == 0) n / acc
-      else primeExtended(acc - 1)
-    }
-
-    if (primeExtended(n / 2 ) == n) true
-    else false
+    if (n < 1) this
+    else dec.dec(n - 1)
 
   }
-
-  println("Is prime: " + isPrime(0))
 
 
 }
