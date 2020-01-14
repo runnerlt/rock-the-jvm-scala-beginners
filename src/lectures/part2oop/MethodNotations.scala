@@ -15,7 +15,7 @@ object MethodNotations extends App {
 
     def apply(): String = s"Hi, my name is $name an I like movie $favoriteMovie"
 
-    def unary_+(nick: String): Person = new Person(s"${this.name} (${nick})", this.favoriteMovie)
+    def +(nick: String): Person = new Person(s"${this.name} (${nick})", this.favoriteMovie)
 
     def unary_+ : Person = new Person(this.name, this.favoriteMovie, this.age + 1)
 
@@ -76,12 +76,12 @@ object MethodNotations extends App {
    * example: mary.apply(2) =>
    * "Marie watched {Inception} 2 times
    */
-  println(mary.unary_+("the rock star").name)
-  println(mary.unary_+.age)
+  println((mary + "the rock star").apply())
+  println((+mary).age)
 
   println(mary.learns("math"))
   println(mary learns "ScalaX")
-  println(mary.learnScala)
+  println(mary learnScala)
 
   println(mary(3))
 }
