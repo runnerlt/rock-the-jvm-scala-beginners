@@ -1,39 +1,40 @@
 package playground
 
 object ScalaPlayground extends App {
-  println("Hello, Scala!")
+  val sc = CarTemplate
+  println(sc.drive)
+  println(sc.carAttributesPrint)
+  //  sc.addCarPart("wheels")
 
-  val c = new Counter(5)
-  println(c.inc(8).getCnt)
-  println(c.dec(80).getCnt)
-
-}
-
-
-class Counter(val counter: Int) {
-  def getCnt: Int = this.counter
-
-  def inc: Counter = new Counter(counter + 1)
-
-  def dec: Counter = new Counter(counter - 1)
-
-
-  def inc(n: Int): Counter = {
-    println(s"We have b in icrement: $n")
-
-    if (n < 1) this
-    else inc.inc(n - 1)
-
-  }
-
-  def dec(n: Int): Counter = {
-    println(s"We have b in decrement: $n")
-
-    if (n < 1) this
-    else dec.dec(n - 1)
-
-  }
-
+  val f = new Ferrari("Ferrari engine", CarTemplate)
+  println(f.carAttributesPrint)
+  println(f.addCarPart("vertical doors").carAttributesPrint)
 
 }
 
+abstract class Car {
+  def drive: String
+
+  def addCarPart(part: String): Car
+
+  def listOfAttributes: String
+
+  def carAttributesPrint: String = "[" + listOfAttributes + "]"
+}
+
+
+object CarTemplate extends Car {
+  override def drive: String = "Im driving as standard car"
+
+  override def addCarPart(part: String): Car = throw new NoSuchElementException
+
+  override def listOfAttributes: String = "Slow horse"
+}
+
+class Ferrari(part: String, template: Car) extends Car {
+  override def drive: String = "Im driving fast Ferrari"
+
+  override def addCarPart(part: String): Car = new Ferrari(part, this)
+
+  override def listOfAttributes: String = "Red, fast"
+}
