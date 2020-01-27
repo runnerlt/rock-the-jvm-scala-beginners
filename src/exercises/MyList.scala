@@ -1,53 +1,52 @@
 package exercises
 
-abstract class MyList {
-  def head(): Int
+/**
+ *
+ */
+object MyListGeneric extends App {
+  val intList: Cons[Int] = new Cons(5, Empty)
+  println(intList.head())
+  println(intList.toString())
+}
 
-  def tail(): MyList
+abstract class MyList[+A] {
+  def head(): A
 
-  def isEmpty(): Boolean
+  def tail(): MyList[A]
 
-  def add(item: Int): MyList
+  def isEmpty: Boolean
+
+  def add[B >: A](item: B): MyList[B]
 
   def printElements: String
 
   override def toString: String = "[" + printElements + "]"
+
 }
 
-object Empty extends MyList {
-  override def head(): Int = throw new NoSuchElementException
+object Empty extends MyList[Nothing] {
+  override def head(): Nothing = throw new NoSuchElementException
 
-  override def tail(): MyList = throw new NoSuchElementException
+  override def tail(): MyList[Nothing] = throw new NoSuchElementException
 
-  override def isEmpty(): Boolean = true
+  override def isEmpty: Boolean = true
 
-  override def add(item: Int): MyList = new Cons(item, Empty)
+  override def add[B >: Nothing](item: B): MyList[B] = new Cons(item, Empty)
 
   override def printElements: String = ""
 }
 
-class Cons(h: Int, t: MyList) extends MyList {
-  override def head(): Int = h
+class Cons[+A](h: A, t: MyList[A]) extends MyList[A] {
+  override def head(): A = h
 
-  override def tail(): MyList = t
+  override def tail(): MyList[A] = t
 
-  override def isEmpty(): Boolean = false
+  override def isEmpty: Boolean = false
 
-  override def add(item: Int): MyList = new Cons(item, this)
+  override def add[B >: A](item: B): MyList[B] = new Cons(item, this)
 
   override def printElements: String = {
-    if (t.isEmpty()) "" + h
+    if (t.isEmpty) "" + h
     else h + " " + t.printElements
   }
 }
-
-object ListTest extends App {
-  val list = new Cons(3, new Cons(4, new Cons(5, Empty)))
-  println(list.tail().head())
-  println(list.tail.head)
-  println(list.tail.tail.head)
-  println(list.add(8).head)
-  println(list.isEmpty())
-  println(list.toString)
-}
-

@@ -1,40 +1,26 @@
 package playground
 
 object ScalaPlayground extends App {
-  val sc = CarTemplate
-  println(sc.drive)
-  println(sc.carAttributesPrint)
-  //  sc.addCarPart("wheels")
 
-  val f = new Ferrari("Ferrari engine", CarTemplate)
-  println(f.carAttributesPrint)
-  println(f.addCarPart("vertical doors").carAttributesPrint)
+  val animalList: MyList[Animal] = MyList.empty[Dog]
+
+  class Animal
+
+  class Cat extends Animal
+
+  class Dog extends Animal
+
+  class MyList[+A] {
+
+  }
+
+  object MyList {
+    def empty[A] = new MyList[A]()
+  }
+
+  //  val catList: MyList[Cat] = MyList.empty[Animal]
+
 
 }
 
-abstract class Car {
-  def drive: String
 
-  def addCarPart(part: String): Car
-
-  def listOfAttributes: String
-
-  def carAttributesPrint: String = "[" + listOfAttributes + "]"
-}
-
-
-object CarTemplate extends Car {
-  override def drive: String = "Im driving as standard car"
-
-  override def addCarPart(part: String): Car = throw new NoSuchElementException
-
-  override def listOfAttributes: String = "Slow horse"
-}
-
-class Ferrari(part: String, template: Car) extends Car {
-  override def drive: String = "Im driving fast Ferrari"
-
-  override def addCarPart(part: String): Car = new Ferrari(part, this)
-
-  override def listOfAttributes: String = "Red, fast"
-}
