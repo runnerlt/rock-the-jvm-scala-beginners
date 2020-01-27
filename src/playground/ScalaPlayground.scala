@@ -2,7 +2,7 @@ package playground
 
 object ScalaPlayground extends App {
 
-  val animalList: MyList[Animal] = MyList.empty[Dog]
+
 
   class Animal
 
@@ -10,16 +10,11 @@ object ScalaPlayground extends App {
 
   class Dog extends Animal
 
-  class MyList[+A] {
+  class Car {}
 
-  }
+  class Fish[A <: Animal]
 
-  object MyList {
-    def empty[A] = new MyList[A]()
-  }
-
-  //  val catList: MyList[Cat] = MyList.empty[Animal]
-
+//  val f = new Fish[Car]
 
 }
 

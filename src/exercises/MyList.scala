@@ -1,8 +1,6 @@
 package exercises
 
-/**
- *
- */
+
 object MyListGeneric extends App {
   val intList: Cons[Int] = new Cons(5, Empty)
   println(intList.head())
