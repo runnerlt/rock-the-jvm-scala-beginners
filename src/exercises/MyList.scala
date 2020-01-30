@@ -1,6 +1,5 @@
 package exercises
 
-
 object MyListGeneric extends App {
   val listOfIntegers: MyList[Int] = new Cons(1, new Cons(2, new Cons(3, Empty)))
   val anotherListOfIntegers: MyList[Int] = new Cons(4, new Cons(5, Empty))
