@@ -2,19 +2,11 @@ package playground
 
 object ScalaPlayground extends App {
 
+  def concatenator: ((String, String) => String) = new Function2[String, String, String] {
+    override def apply(s1: String, s2: String): String = s1 + s2
+  }
 
-
-  class Animal
-
-  class Cat extends Animal
-
-  class Dog extends Animal
-
-  class Car {}
-
-  class Fish[A <: Animal]
-
-//  val f = new Fish[Car]
+  println(concatenator("labas", " rytas"))
 
 }
 
