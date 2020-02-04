@@ -2,11 +2,12 @@ package playground
 
 object ScalaPlayground extends App {
 
-  def concatenator: ((String, String) => String) = new Function2[String, String, String] {
-    override def apply(s1: String, s2: String): String = s1 + s2
+  def fn: (Int, Int) => Int = new Function2[Int, Int, Int] {
+    override def apply(elem1: Int, elem2: Int): Int = elem1 * elem2
   }
 
-  println(concatenator("labas", " rytas"))
+  println(fn(5, 8))
+
 
 }
 
