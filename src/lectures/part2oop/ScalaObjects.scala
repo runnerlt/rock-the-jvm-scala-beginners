@@ -2,6 +2,7 @@ package lectures.part2oop
 
 object ScalaObjects extends App {
 
+
   val pp = Person("Kostas")
   println(pp.talkClass())
 }
