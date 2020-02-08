@@ -1,7 +1,6 @@
 package playground
 
 object ScalaPlayground extends App {
-
   val fn3 = (x: Int) => x * 9
 
   def fn(x: Int): Int = x * x
@@ -10,6 +9,7 @@ object ScalaPlayground extends App {
 
   println(fn2.apply(6))
   println(fn3.apply(5))
+
 
   def test: (Int, Int) => Int = (x, y) => x * y
 
