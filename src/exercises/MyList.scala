@@ -110,15 +110,15 @@ case class Cons[+A](h: A, t: MyList[A]) extends MyList[A] {
   }
 
   override def sort(compare: (A, A) => Int): MyList[A] = {
-
+    //  helper function
     def insert(x: A, sortedList: MyList[A]): MyList[A] = {
       if (sortedList.isEmpty) new Cons(x, Empty)
-      else if (compare(x, sortedList.head()) <= 0) new Cons(x, sortedList)
-      else new Cons(sortedList.head(), insert(x, sortedList.tail()))
+      else if (compare(x, sortedList.head()) <= 0) new Cons(x, sortedList) // jeigu head mazesnis uz rikiuoto listo head
+      else new Cons(sortedList.head(), insert(x, sortedList.tail())) // kitu atveju esamas head, o likusi list perrikiuojam
     }
 
     val sortedTail = t.sort(compare) // per tail naudojam fn paduodamami savo compare formule/lambda
-    insert(h, sortedTail) // insert funkcija ideda head i sortedTail
+    insert(h, sortedTail) // insert funkcija ideda head i sortedTail. Ir i reikiama pozicija.
 
 
   }
