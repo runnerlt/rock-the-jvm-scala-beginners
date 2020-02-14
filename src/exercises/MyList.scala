@@ -30,6 +30,10 @@ abstract class MyList[+A] {
 
   def sort(compare: (A, A) => Int): MyList[A]
 
+  def zipWith[B, C](list: MyList[B], zip: (A, B) => C): MyList[C]
+
+  def fold[B](start: B)(operator: (B, A) => B): B
+
 }
 
 case object Empty extends MyList[Nothing] {
@@ -54,6 +58,13 @@ case object Empty extends MyList[Nothing] {
   //hofs
   override def foreach(f: Nothing => Unit): Unit = () // the same, as Unit
   override def sort(compare: (Nothing, Nothing) => Int): MyList[Nothing] = Empty
+
+  override def zipWith[B, C](list: MyList[B], zip: (Nothing, B) => C): MyList[C] =
+    if (!list.isEmpty) throw new RuntimeException("Lists do not have the same lenght")
+    else Empty
+
+  override def fold[B](start: B)(operator: (B, Nothing) => B): B = start
+
 }
 
 case class Cons[+A](h: A, t: MyList[A]) extends MyList[A] {
@@ -122,6 +133,23 @@ case class Cons[+A](h: A, t: MyList[A]) extends MyList[A] {
 
 
   }
+
+  override def zipWith[B, C](list: MyList[B], zip: (A, B) => C): MyList[C] = {
+    if (list.isEmpty) throw new RuntimeException("Length of lists differs")
+    else new Cons(zip(h, list.head), t.zipWith(list.tail, zip))
+  }
+
+  /*
+  [1,2,3].fold(0)(+) =
+  = [2,3].fold(1)(+) =
+  = [3].fold(3)(+) =
+  = [].fold(6)(+)
+  = 6
+ */
+  override def fold[B](start: B)(operator: (B, A) => B): B = {
+    t.fold(operator(start, h))(operator)
+  }
+
 }
 
 object MyListGeneric extends App {
@@ -143,6 +171,10 @@ object MyListGeneric extends App {
 
   listOfIntegers.foreach(println)
   println(listOfIntegers.sort((x, y) => y - x))
+
+  println(listOfIntegers.zipWith(listOfIntegers, (x: Int, y: Int) => x * y))
+
+  println(listOfIntegers.fold(0)(_ + _))
 
 }
 

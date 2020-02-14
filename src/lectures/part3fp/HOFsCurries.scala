@@ -40,4 +40,12 @@ object HOFsCurries extends App {
   // or you are allowed to call straightway:
   println(curriedFormatter("%20.8f")(Math.PI))
 
+  def fx = (x: Int) => (y: Int) => (x + y)
+
+  def fx2(x: Int)(y: Int): Int = x * y
+
+  println(fx(5)(8))
+  println(fx2(4) _)
+
+
 }
