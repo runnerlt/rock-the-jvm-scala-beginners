@@ -3,7 +3,7 @@ package playground
 object ScalaPlayground extends App {
 
   val vilnius = new Place(new Vilnius)
-  val world = new Place(new World)
+//  val world = new Place(new World)
 
 }
 
