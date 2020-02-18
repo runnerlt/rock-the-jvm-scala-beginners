@@ -176,5 +176,10 @@ object MyListGeneric extends App {
 
   println(listOfIntegers.fold(0)(_ + _))
 
+  val combinations = for {
+    n <- listOfIntegers
+    s <- listOfStrings
+  } yield n + "-" + s
+  println(combinations)
 }
 

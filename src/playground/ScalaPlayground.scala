@@ -2,22 +2,21 @@ package playground
 
 object ScalaPlayground extends App {
 
-  val vilnius = new Place(new Vilnius)
-//  val world = new Place(new World)
+  val numbers = List(1, 2, 3, 4, 5, 6)
+  val colors = List("red", "yellow", "green")
+  println(numbers.flatMap(x => x + "okey"))
+
+  println(numbers.map(_ + 8))
+
+  numbers.map(println(_))
+
+  val compr = for {
+    n <- numbers
+  } yield {
+    n * Math.PI
+  }
+
+  println(compr)
+
 
 }
-
-
-class World
-
-class Europe extends World
-
-class Lithuania extends Europe
-
-class Vilnius extends Lithuania
-
-class Germany extends Europe
-
-class Place[A >: Vilnius <: Europe](val p: A) {}
-
-
