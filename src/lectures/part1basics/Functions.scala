@@ -30,8 +30,6 @@ object Functions extends App {
   println(fib(6))
 
 
-
-
   def isPrime(n: Int): Boolean = {
     @scala.annotation.tailrec
     def primeExtended(acc: Int): Int = {
