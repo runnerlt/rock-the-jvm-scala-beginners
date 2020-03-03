@@ -32,5 +32,25 @@ object Sequences extends App {
 
   println(ls.mkString(" | "))
 
+  println("fdsff".mkString("-"))
+
+  println(66 +: ls :+ 666)
+
+  // Arrays
+
+  val arr = Array(1, 5, 7, 8, 9)
+  val arr2 = Array.ofDim[Int](4)
+  arr2.foreach(println)
+
+  arr(1) = -5
+
+  println(arr.mkString(" | "))
+
+  // Vectors
+  val v = Vector(4, 6, 8, 5, 8, 555, 58, 7, 7)
+  println(v.sorted)
+
+  println("fsdf" + "aaaaa")
+
 
 }
