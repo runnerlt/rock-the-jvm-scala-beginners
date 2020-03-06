@@ -19,6 +19,13 @@ object MapAndTuplesExercises extends App {
 
   }
 
+  def unfriend(network: Map[String, Set[String]], personA: String, personB: String): Map[String, Set[String]] = {
+    val friendsOfA = network(personA)
+    val friendsOfB = network(personB)
+
+    network + (personA -> (friendsOfA - personB)) + (personB -> (friendsOfB - personA))
+  }
+
 
   //  test add
   println(add(empty, "Juozas"))
