@@ -26,6 +26,11 @@ object MapAndTuplesExercises extends App {
     network + (personA -> (friendsOfA - personB)) + (personB -> (friendsOfB - personA))
   }
 
+  def nFriends(network: Map[String, Set[String]], person: String): Int = {
+    if (!network.contains(person)) 0
+    else network(person).size
+  }
+
 
   //  test add
   println(add(empty, "Juozas"))
@@ -35,6 +40,13 @@ object MapAndTuplesExercises extends App {
 
   // and test friend
   println(friend(add(add(empty, "Juozas"), "Dovile"), "Juozas", "Dovile"))
+
+  // test unfriend
+  println(unfriend(friend(add(add(empty, "Juozas"), "Dovile"), "Juozas", "Dovile"), "Juozas", "Dovile")
+  )
+
+  // test nFriends
+  println(nFriends(friend(add(add(empty, "Juozas"), "Dovile"), "Juozas", "Dovile"), "Juozas"))
 
 
 }
