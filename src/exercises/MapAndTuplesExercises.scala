@@ -26,9 +26,16 @@ object MapAndTuplesExercises extends App {
     network + (personA -> (friendsOfA - personB)) + (personB -> (friendsOfB - personA))
   }
 
+  // test count with no friends
+  val n = Map[String, Set[String]]("Juozas" -> Set(), "Dovile" -> Set("Lukas"))
+
   def nFriends(network: Map[String, Set[String]], person: String): Int = {
-    if (!network.contains(person)) 0
+    if (!network.contains(person)) 0 // to handle no friends case
     else network(person).size
+  }
+
+  def mostFriends(network: Map[String, Set[String]]): String = {
+    network.maxBy(pair => pair._2.size)._1
   }
 
 
@@ -48,5 +55,14 @@ object MapAndTuplesExercises extends App {
   // test nFriends
   println(nFriends(friend(add(add(empty, "Juozas"), "Dovile"), "Juozas", "Dovile"), "Juozas"))
 
+  // test most friends
+  println(mostFriends(friend(add(add(empty, "Juozas"), "Dovile"), "Juozas", "Dovile")))
+
+  def nWithoutFriends(network: Map[String, Set[String]]): Int = {
+    // network.count(pair => pair._2.isEmpty)
+    network.count(_._2.isEmpty)
+  }
+
+  println(nWithoutFriends(n))
 
 }
